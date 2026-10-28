@@ -26,5 +26,5 @@
     "url": "https://data.chhs.ca.gov/dataset/ea0c8ca9-023e-46a3-b95b-b9d4ab8ec195/resource/842c8bcb-bfac-4aa9-9de8-b11eb049f6de/download/hafdselectedfiledoc2004.pdf",
     "sha256": "734e8bafe9c249c1dff912bee4bbed87c54cb7fb33f6023e6edabc36e4e75b34"
   },
-  "policy": "Observed row counts are audit results, never selection targets. Fingerprints pin this version; investigate future changes rather than forcing agreement."
+  "policy": "Source fingerprints identify the downloaded input versions. Review changed source bytes before using a different release."
 }

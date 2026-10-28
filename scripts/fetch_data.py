@@ -35,7 +35,7 @@ def main():
                     raise RuntimeError('Historical shared file is unavailable; supply an independently verified local copy.')
             if sha256(temporary) != source['sha256']:
                 temporary.unlink()
-                raise ValueError('Source fingerprint changed. Investigate provenance; do not adjust data to expected counts.')
+                raise ValueError('Source fingerprint changed. Verify the source version before continuing.')
             temporary.rename(destination)
         if sha256(destination) != source['sha256']:
             raise ValueError(f'Unexpected fingerprint for {destination}; verify source version.')

@@ -1,0 +1,36 @@
+{
+  "raw_rows": 578350,
+  "raw_columns": 35,
+  "exact_full_schema_duplicates_removed": 0,
+  "missing_identity_rows_excluded": 0,
+  "numeric_coercions_to_missing": {
+    "DAY_PER": 0,
+    "BED_LIC": 10320,
+    "BED_AVL": 6235,
+    "BED_STF": 4945,
+    "Amount": 0
+  },
+  "invalid_nonnegative_predictors_to_missing": {
+    "DAY_PER": 0,
+    "BED_LIC": 0,
+    "BED_AVL": 0,
+    "BED_STF": 0
+  },
+  "prepared_reporting_rows": 578350,
+  "facilities": 472,
+  "facility_reporting_periods": 2690,
+  "variables": 228,
+  "missing_values": {
+    "FAC_NO": 0,
+    "FAC_NAME": 0,
+    "BEG_DATE": 0,
+    "END_DATE": 0,
+    "COUNTY": 430,
+    "DAY_PER": 0,
+    "BED_LIC": 10320,
+    "BED_AVL": 6235,
+    "BED_STF": 4945,
+    "Variable": 0,
+    "Amount": 0
+  }
+}

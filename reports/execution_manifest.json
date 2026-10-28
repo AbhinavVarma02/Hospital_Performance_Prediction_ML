@@ -1,0 +1,35 @@
+{
+  "python": "3.11.17",
+  "platform": "Linux",
+  "pandas": "2.2.3",
+  "scikit_learn": "1.6.1",
+  "numpy": "2.2.6",
+  "raw_sha256": "0325bca518c17678a4e7bc85325e89fe3a8bc7c8bfcc1e0653caafbeae0a7a91",
+  "execution": "Fresh kernel per notebook; sequential code execution; no network/download/install cells",
+  "notebooks": [
+    {
+      "notebook": "notebooks/01_data_audit.ipynb",
+      "executed_code_cells": 4,
+      "errors": 0,
+      "sha256": "373dd1238437b84346e41f8b11f12dd8319e029cfc5b77f6189a301e80fd50e0"
+    },
+    {
+      "notebook": "notebooks/02_capacity_clustering.ipynb",
+      "executed_code_cells": 4,
+      "errors": 0,
+      "sha256": "6992bd0a57c2082374f6df0d0b10d6059d97b82e3e60b9449feee864795a3add"
+    },
+    {
+      "notebook": "notebooks/03_supervised_evaluation.ipynb",
+      "executed_code_cells": 5,
+      "errors": 0,
+      "sha256": "078ea0a37aae68b63e99a9dfc54ac32736145cbc163b245e39cd3746dd5890e5"
+    },
+    {
+      "notebook": "notebooks/04_historical_replay.ipynb",
+      "executed_code_cells": 3,
+      "errors": 0,
+      "sha256": "d7d6ed0473fcd72f231c3c79c6711ddb3239aa5c388dc2f9054ef26904328030"
+    }
+  ]
+}

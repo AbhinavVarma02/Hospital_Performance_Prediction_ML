@@ -1,0 +1,68 @@
+{
+  "status": "historical methodology replay on fingerprinted source; not improved validation",
+  "cleaning_steps": [
+    {
+      "step": "raw",
+      "rows": 578350
+    },
+    {
+      "step": "drop_missing_selected_columns",
+      "rows": 577920
+    },
+    {
+      "step": "historical_projected_deduplication",
+      "rows": 553022
+    },
+    {
+      "step": "drop_non_numeric_values",
+      "rows": 542702
+    },
+    {
+      "step": "historical_sequential_iqr_BED_LIC",
+      "rows": 531435,
+      "removed": 11267
+    },
+    {
+      "step": "historical_sequential_iqr_BED_AVL",
+      "rows": 525845,
+      "removed": 5590
+    },
+    {
+      "step": "historical_sequential_iqr_BED_STF",
+      "rows": 513363,
+      "removed": 12482
+    }
+  ],
+  "cleaned_rows": 513363,
+  "values_match_original_shared_cleaned_eight_columns": true,
+  "matrix_columns_actually_used": [
+    "BED_LIC",
+    "BED_AVL",
+    "BED_STF",
+    "DAY_PER",
+    "FAC_NAME_ENC",
+    "COUNTY_ENC",
+    "Variable_ENC"
+  ],
+  "excluded_amount_from_original_matrix": true,
+  "k": 3,
+  "random_state": 42,
+  "n_init": "auto",
+  "pca_svd_solver": "full",
+  "cluster_sizes": {
+    "0": 240344,
+    "1": 170624,
+    "2": 102395
+  },
+  "pca_explained_variance_ratio": [
+    0.4152355028530942,
+    0.17293325232285753
+  ],
+  "exact_saved_cluster_output_match_claimed": false,
+  "limitations": [
+    "Original library versions and executable order were not recorded.",
+    "Original code cells have null execution counters but retained outputs.",
+    "Global scaling and ordinal facility/county/variable codes are historical defects.",
+    "Amount profile averages mix units and are retained only for audit, not interpretation."
+  ]
+}

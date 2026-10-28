@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+data/raw/*
+data/historical/*
+data/processed/*
+!data/raw/.gitkeep
+!data/historical/.gitkeep
+!data/processed/.gitkeep
+reports/**/reporting_row_assignments.csv*
+reports/**/facility_report_assignments.csv*
+work/

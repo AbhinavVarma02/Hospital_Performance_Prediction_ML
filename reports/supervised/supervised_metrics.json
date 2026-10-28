@@ -1,0 +1,236 @@
+{
+  "target_variable": "TOT_OP_EXP",
+  "target_description": "Reported total operating expenses",
+  "target_units": "Source-reported dollars; reporting-period totals, not inflation adjusted",
+  "classification_definition": "Amount above the development-training median for this reporting Variable; exploratory expense category",
+  "seed": 42,
+  "source_reporting_rows_for_target": 2690,
+  "eligible_reporting_rows": 2690,
+  "excluded_missing_or_nonfinite_target_or_missing_facility": 0,
+  "negative_target_rows_retained": 0,
+  "zero_target_rows_retained": 191,
+  "rows": {
+    "development": 2154,
+    "holdout": 536
+  },
+  "facilities": {
+    "development": 377,
+    "holdout": 95,
+    "overlap": 0
+  },
+  "features": [
+    "BED_LIC",
+    "AVAILABLE_SHARE",
+    "STAFFED_SHARE",
+    "DAY_PER",
+    "COUNTY"
+  ],
+  "validation": "20% facility holdout; three GroupKFold development folds; every fitted preprocessing statistic and expense threshold learned in training only",
+  "feature_outliers": "1st/99th percentile clipping learned within each training fold; target values retained; no-clipping sensitivity uses development folds only",
+  "regression_selection": {
+    "criterion": "minimum mean development-fold MAE, including dummy baselines",
+    "selected_model": "random_forest"
+  },
+  "classification_selection": {
+    "criterion": "maximum mean development-fold balanced accuracy, including dummy baseline",
+    "selected_model": "random_forest"
+  },
+  "development_training_expense_threshold": 86796390.5,
+  "classification_cv_training_thresholds": {
+    "1": 93163400.0,
+    "2": 87170321.0,
+    "3": 81132287.0
+  },
+  "regression_cv_mean": {
+    "dummy_mean": {
+      "mae": 265173983.67743048,
+      "rmse": 581200570.530578,
+      "r2": -0.048739049162869565,
+      "median_absolute_error": 202382564.82219127
+    },
+    "dummy_median": {
+      "mae": 220075165.22423398,
+      "rmse": 598522625.8268913,
+      "r2": -0.10614506323385046,
+      "median_absolute_error": 76866811.5
+    },
+    "random_forest": {
+      "mae": 172819909.93930277,
+      "rmse": 573161416.9707412,
+      "r2": 0.03572595273710658,
+      "median_absolute_error": 48641261.086871736
+    },
+    "ridge": {
+      "mae": 211370011.66215232,
+      "rmse": 583445088.3527514,
+      "r2": -0.017726740142461894,
+      "median_absolute_error": 85631952.76786421
+    }
+  },
+  "classification_cv_mean": {
+    "dummy_most_frequent": {
+      "accuracy": 0.5051067780872794,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.3349687544130915,
+      "roc_auc": 0.5,
+      "pr_auc_average_precision": 0.4948932219127205
+    },
+    "logistic_regression": {
+      "accuracy": 0.7948003714020427,
+      "balanced_accuracy": 0.7898962462743949,
+      "macro_f1": 0.7905089696062753,
+      "roc_auc": 0.8615670318394201,
+      "pr_auc_average_precision": 0.8367043167555771
+    },
+    "random_forest": {
+      "accuracy": 0.8077994428969358,
+      "balanced_accuracy": 0.8060270977790965,
+      "macro_f1": 0.8061010954993564,
+      "roc_auc": 0.8687795293144903,
+      "pr_auc_average_precision": 0.8503588753989609
+    }
+  },
+  "development_sensitivity_without_clipping": {
+    "regression_mean_mae": 154641242.6424133,
+    "classification_mean_balanced_accuracy": 0.804381321308627,
+    "used_for_selection": false
+  },
+  "regression_holdout": {
+    "dummy_mean": {
+      "mae": 185195501.4191421,
+      "rmse": 213432386.63541922,
+      "r2": -0.1181512956721531,
+      "median_absolute_error": 196062323.48885792,
+      "facility_macro_mae": 188768395.3622967
+    },
+    "dummy_median": {
+      "mae": 150863397.7294776,
+      "rmse": 222865322.35251957,
+      "r2": -0.21917184765839326,
+      "median_absolute_error": 83348653.0,
+      "facility_macro_mae": 146991606.22162908
+    },
+    "random_forest": {
+      "mae": 100222512.44144547,
+      "rmse": 166520565.0187067,
+      "r2": 0.31936280021274566,
+      "median_absolute_error": 49765714.993806764,
+      "facility_macro_mae": 95824088.95403233
+    }
+  },
+  "classification_holdout": {
+    "dummy_most_frequent": {
+      "accuracy": 0.4869402985074627,
+      "balanced_accuracy": 0.5,
+      "macro_f1": 0.32747804265997493,
+      "precision": 0.0,
+      "recall": 0.0,
+      "roc_auc": 0.5,
+      "pr_auc_average_precision": 0.5130597014925373,
+      "positive_prevalence": 0.5130597014925373,
+      "confusion_matrix_labels_0_1": [
+        [
+          261,
+          0
+        ],
+        [
+          275,
+          0
+        ]
+      ],
+      "facility_macro_accuracy": 0.5168546365914787
+    },
+    "random_forest": {
+      "accuracy": 0.789179104477612,
+      "balanced_accuracy": 0.7896691048415186,
+      "macro_f1": 0.7891783706642999,
+      "precision": 0.8091603053435115,
+      "recall": 0.7709090909090909,
+      "roc_auc": 0.8497248345524206,
+      "pr_auc_average_precision": 0.8119689204466165,
+      "positive_prevalence": 0.5130597014925373,
+      "confusion_matrix_labels_0_1": [
+        [
+          211,
+          50
+        ],
+        [
+          63,
+          212
+        ]
+      ],
+      "facility_macro_accuracy": 0.7918295739348371
+    }
+  },
+  "regression_selected_model_ci": {
+    "method": "95% percentile bootstrap of held-out facilities; conditional on fitted model",
+    "requested_repetitions": 200,
+    "valid_repetitions": 200,
+    "intervals": {
+      "mae": [
+        76703811.84639616,
+        125822019.7999562
+      ],
+      "rmse": [
+        124478054.15845616,
+        208371958.8997672
+      ],
+      "r2": [
+        -0.11002543789856009,
+        0.5395758950049817
+      ],
+      "median_absolute_error": [
+        33864538.228333585,
+        70552114.54072058
+      ]
+    }
+  },
+  "classification_selected_model_ci": {
+    "method": "95% percentile bootstrap of held-out facilities; conditional on fitted model",
+    "requested_repetitions": 200,
+    "valid_repetitions": 200,
+    "intervals": {
+      "accuracy": [
+        0.6991760082023241,
+        0.8691168831168832
+      ],
+      "balanced_accuracy": [
+        0.7003759211008427,
+        0.8681953576377625
+      ],
+      "macro_f1": [
+        0.6937815250984093,
+        0.8682446774171596
+      ],
+      "precision": [
+        0.7018386190285026,
+        0.9145966806401434
+      ],
+      "recall": [
+        0.6486194827921447,
+        0.8867136914451076
+      ],
+      "roc_auc": [
+        0.7670704419868241,
+        0.9287732660442137
+      ],
+      "pr_auc_average_precision": [
+        0.7044583804870664,
+        0.9281724304109625
+      ],
+      "positive_prevalence": [
+        0.411877222360043,
+        0.6033399884537669
+      ]
+    }
+  },
+  "limitations": [
+    "Expense is a financial reporting measure, not a verified clinical or efficiency outcome.",
+    "Facility holdout estimates transfer to unseen facilities in this historical extract; no temporal forecasting claim is made.",
+    "Report periods and nominal dollar values differ; DAY_PER is included but there is no inflation or case-mix adjustment.",
+    "The expense-category cutoff is an exploratory training median and has no clinical or policy interpretation.",
+    "Facility bootstrap intervals are conditional on the fitted model and omit training and source-reporting uncertainty.",
+    "Primary metrics and model selection weight reporting rows equally; facilities with more report periods have more influence. Facility-macro MAE/accuracy provide an equal-facility holdout sensitivity.",
+    "Licensed beds are end-of-period counts; available and staffed beds are period averages. Their ratios are descriptive capacity features, not simultaneous utilization measures, and can exceed one."
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "steps": [
+    {
+      "step": "raw",
+      "rows": 578350
+    },
+    {
+      "step": "drop_missing_selected_columns",
+      "rows": 577920
+    },
+    {
+      "step": "historical_projected_deduplication",
+      "rows": 553022
+    },
+    {
+      "step": "drop_non_numeric_values",
+      "rows": 542702
+    },
+    {
+      "step": "historical_sequential_iqr_BED_LIC",
+      "rows": 531435,
+      "removed": 11267
+    },
+    {
+      "step": "historical_sequential_iqr_BED_AVL",
+      "rows": 525845,
+      "removed": 5590
+    },
+    {
+      "step": "historical_sequential_iqr_BED_STF",
+      "rows": 513363,
+      "removed": 12482
+    }
+  ],
+  "observed_cleaned_rows": 513363,
+  "values_match_downloaded_cleaned": true,
+  "raw_sha256": "0325bca518c17678a4e7bc85325e89fe3a8bc7c8bfcc1e0653caafbeae0a7a91",
+  "cleaned_sha256": "0ac8790edaea1ff4e0de5257c186319832da963143903a235684f22d410d4fbc"
+}

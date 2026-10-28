@@ -1,0 +1,30 @@
+{
+  "retrieved_on": "2026-10-28",
+  "raw": {
+    "path": "data/raw/hospital_2012_2017.csv",
+    "url": "https://data.chhs.ca.gov/dataset/ea0c8ca9-023e-46a3-b95b-b9d4ab8ec195/resource/81602900-aa04-4fcb-b70b-19bc0553f79b/download/selected-file_2012_2017_machinereadable.csv",
+    "landing_page": "https://data.ca.gov/@department-of-health-care-access-and-information/hospital-annual-financial-data-selected-data-pivot-tables/r/50114563-deae-4fcb-8900-9533f9d59f8f",
+    "sha256": "0325bca518c17678a4e7bc85325e89fe3a8bc7c8bfcc1e0653caafbeae0a7a91",
+    "observed_shape": [
+      578350,
+      35
+    ],
+    "publisher": "California HCAI (formerly OSHPD)",
+    "historical_drive_id": "1BSR0BK6wRsr7KfZMkowkp4pNa45pQAm1",
+    "historical_drive_status": "unavailable on retrieval date; used official resource, verified by exact historical cleaning replay"
+  },
+  "historical_cleaned": {
+    "path": "data/historical/original_cleaned.csv",
+    "drive_id": "1PCU0ibbltz_Ir4xWLV-ewzphm0kR1_Ta",
+    "sha256": "0ac8790edaea1ff4e0de5257c186319832da963143903a235684f22d410d4fbc",
+    "observed_shape": [
+      513363,
+      11
+    ]
+  },
+  "dictionary": {
+    "url": "https://data.chhs.ca.gov/dataset/ea0c8ca9-023e-46a3-b95b-b9d4ab8ec195/resource/842c8bcb-bfac-4aa9-9de8-b11eb049f6de/download/hafdselectedfiledoc2004.pdf",
+    "sha256": "734e8bafe9c249c1dff912bee4bbed87c54cb7fb33f6023e6edabc36e4e75b34"
+  },
+  "policy": "Source fingerprints identify the downloaded input versions. Review changed source bytes before using a different release."
+}

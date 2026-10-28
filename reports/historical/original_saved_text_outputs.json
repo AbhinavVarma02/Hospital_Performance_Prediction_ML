@@ -1,0 +1,200 @@
+{
+  "602_Classification_Model_Abhinav&Devika.ipynb": [
+    {
+      "cell_position_1_based": 1,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "/usr/local/lib/python3.11/dist-packages/gdown/__main__.py:140: FutureWarning: Option `--id` was deprecated in version 4.3.1 and will be removed in 5.0. You don't need to pass it anymore to use a file ID.\n  warnings.warn(\nDownloading...\nFrom (original): https://drive.google.com/uc?id=1BSR0BK6wRsr7KfZMkowkp4pNa45pQAm1\nFrom (redirected): https://drive.google.com/uc?id=1BSR0BK6wRsr7KfZMkowkp4pNa45pQAm1&confirm=t&uuid=071385bd-7ddd-4a6d-8a43-9d9417a7555b\nTo: /content/selected-file_2012_2017_machinereadable.csv\n100% 205M/205M [00:02<00:00, 92.3MB/s]\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 2,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "(578350, 35)\n",
+        "      FAC_NO          FAC_NAME   BEG_DATE   END_DATE  DAY_PER DATA_IND  \\\n0  106010735  ALAMEDA HOSPITAL  01JUL2011  30JUN2012      366  Audited   \n1  106010735  ALAMEDA HOSPITAL  01JUL2011  30JUN2012      366  Audited   \n2  106010735  ALAMEDA HOSPITAL  01JUL2011  30JUN2012      366  Audited   \n3  106010735  ALAMEDA HOSPITAL  01JUL2011  30JUN2012      366  Audited   \n4  106010735  ALAMEDA HOSPITAL  01JUL2011  30JUN2012      366  Audited   \n\n               AUDIT_IND   COUNTY  HSA  HFPA  ... MCAR_PRO#  MCAL_PRO#  \\\n0  Incl. Ind. Audit Adj.  Alameda    5   417  ...   05-0211  HSC00211F   \n1  Incl. Ind. Audit Adj.  Alameda    5   417  ...   05-0211  HSC00211F   \n2  Incl. Ind. Audit Adj.  Alameda    5   417  ...   05-0211  HSC00211F   \n3  Incl. Ind. Audit Adj.  Alameda    5   417  ...   05-0211  HSC00211F   \n4  Incl. Ind. Audit Adj.  Alameda    5   417  ...   05-0211  HSC00211F   \n\n   REG_MCAL# BED_LIC BED_AVL BED_STF       Variable   Amount WEB-SITE ORG-NAME  \n0  ZZR00211F     161     161     161   DAY_ MCAR_TR  12330.0      NaN      NaN  \n1  ZZR00211F     161     161     161    DAY_MCAR_MC    885.0      NaN      NaN  \n2  ZZR00211F     161     161     161    DAY_MCAL_TR  13093.0      NaN      NaN  \n3  ZZR00211F     161     161     161  DAY_ MCAL_ MC   1786.0      NaN      NaN  \n4  ZZR00211F     161     161     161       DAY_CNTY      0.0      NaN      NaN  \n\n[5 rows x 35 columns]"
+      ]
+    },
+    {
+      "cell_position_1_based": 3,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "        Null Count  Percent Missing\nCOUNTY         430         0.074349"
+      ]
+    },
+    {
+      "cell_position_1_based": 4,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Shape after dropping nulls: (577920, 8)\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 8,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "CLASSIFICATION MODEL:\nAccuracy: 0.60\n              precision    recall  f1-score   support\n\n           0       0.60      0.60      0.60     85480\n           1       0.60      0.60      0.60     84800\n\n    accuracy                           0.60    170280\n   macro avg       0.60      0.60      0.60    170280\nweighted avg       0.60      0.60      0.60    170280\n\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 9,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Random Forest Accuracy: 0.8353946441155744\n              precision    recall  f1-score   support\n\n           0       0.84      0.83      0.83     85480\n           1       0.83      0.84      0.84     84800\n\n    accuracy                           0.84    170280\n   macro avg       0.84      0.84      0.84    170280\nweighted avg       0.84      0.84      0.84    170280\n\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 10,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Gradient Boosting Classifier Results:\nAccuracy: 0.8233027953958186\n              precision    recall  f1-score   support\n\n           0       0.85      0.79      0.82     85480\n           1       0.80      0.86      0.83     84800\n\n    accuracy                           0.82    170280\n   macro avg       0.82      0.82      0.82    170280\nweighted avg       0.82      0.82      0.82    170280\n\n"
+      ]
+    }
+  ],
+  "602_Clustering_&_Classification_Model_Abhinav&Devika.ipynb": [
+    {
+      "cell_position_1_based": 2,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "/usr/local/lib/python3.11/dist-packages/gdown/__main__.py:140: FutureWarning: Option `--id` was deprecated in version 4.3.1 and will be removed in 5.0. You don't need to pass it anymore to use a file ID.\n  warnings.warn(\nDownloading...\nFrom: https://drive.google.com/uc?id=1PCU0ibbltz_Ir4xWLV-ewzphm0kR1_Ta\nTo: /content/cleaned_hospital_data.csv\n100% 46.8M/46.8M [00:00<00:00, 74.6MB/s]\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 4,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "           FAC_NAME   COUNTY  DAY_PER  BED_LIC  BED_AVL  BED_STF  \\\n0  ALAMEDA HOSPITAL  Alameda      366    161.0    161.0    161.0   \n1  ALAMEDA HOSPITAL  Alameda      366    161.0    161.0    161.0   \n2  ALAMEDA HOSPITAL  Alameda      366    161.0    161.0    161.0   \n3  ALAMEDA HOSPITAL  Alameda      366    161.0    161.0    161.0   \n4  ALAMEDA HOSPITAL  Alameda      366    161.0    161.0    161.0   \n\n        Variable   Amount  FAC_ENC  COUNTY_ENC  VAR_ENC  \n0   DAY_ MCAR_TR  12330.0       20           0       47  \n1    DAY_MCAR_MC    885.0       20           0       54  \n2    DAY_MCAL_TR  13093.0       20           0       53  \n3  DAY_ MCAL_ MC   1786.0       20           0       46  \n4       DAY_CNTY      0.0       20           0       50  "
+      ]
+    },
+    {
+      "cell_position_1_based": 5,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "(513363, 11)"
+      ]
+    },
+    {
+      "cell_position_1_based": 8,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Cluster Summary (mean values):\n                       BED_LIC     BED_AVL     BED_STF        Amount\nEfficiency_Cluster                                                  \n0                    68.601076   65.947754   41.772988  1.343318e+07\n1                   212.875838  205.316796  130.087971  3.017779e+07\n2                   415.233732  387.157976  255.618790  7.590176e+07\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 20,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Logistic Regression Results:\nAccuracy: 0.5420137784155471\n              precision    recall  f1-score   support\n\n           0       0.54      0.62      0.58     76956\n           1       0.55      0.46      0.50     77053\n\n    accuracy                           0.54    154009\n   macro avg       0.54      0.54      0.54    154009\nweighted avg       0.54      0.54      0.54    154009\n\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 21,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Random Forest Results:\nAccuracy: 0.6035231707237889\n              precision    recall  f1-score   support\n\n           0       0.64      0.46      0.54     76956\n           1       0.58      0.75      0.65     77053\n\n    accuracy                           0.60    154009\n   macro avg       0.61      0.60      0.60    154009\nweighted avg       0.61      0.60      0.60    154009\n\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 22,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Gradient Boosting Classifier Results:\nAccuracy: 0.5804855560389328\n              precision    recall  f1-score   support\n\n           0       0.59      0.54      0.56     76956\n           1       0.57      0.62      0.60     77053\n\n    accuracy                           0.58    154009\n   macro avg       0.58      0.58      0.58    154009\nweighted avg       0.58      0.58      0.58    154009\n\n"
+      ]
+    }
+  ],
+  "602_Regression_Model_Abhinav&Devika.ipynb": [
+    {
+      "cell_position_1_based": 1,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "/usr/local/lib/python3.11/dist-packages/gdown/__main__.py:140: FutureWarning: Option `--id` was deprecated in version 4.3.1 and will be removed in 5.0. You don't need to pass it anymore to use a file ID.\n  warnings.warn(\nDownloading...\nFrom (original): https://drive.google.com/uc?id=1BSR0BK6wRsr7KfZMkowkp4pNa45pQAm1\nFrom (redirected): https://drive.google.com/uc?id=1BSR0BK6wRsr7KfZMkowkp4pNa45pQAm1&confirm=t&uuid=1151d7be-93ba-45fa-899b-93b59c5400bb\nTo: /content/selected-file_2012_2017_machinereadable.csv\n100% 205M/205M [00:02<00:00, 81.1MB/s]\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 2,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "(578350, 35)\n",
+        "      FAC_NO          FAC_NAME   BEG_DATE   END_DATE  DAY_PER DATA_IND  \\\n0  106010735  ALAMEDA HOSPITAL  01JUL2011  30JUN2012      366  Audited   \n1  106010735  ALAMEDA HOSPITAL  01JUL2011  30JUN2012      366  Audited   \n2  106010735  ALAMEDA HOSPITAL  01JUL2011  30JUN2012      366  Audited   \n3  106010735  ALAMEDA HOSPITAL  01JUL2011  30JUN2012      366  Audited   \n4  106010735  ALAMEDA HOSPITAL  01JUL2011  30JUN2012      366  Audited   \n\n               AUDIT_IND   COUNTY  HSA  HFPA  ... MCAR_PRO#  MCAL_PRO#  \\\n0  Incl. Ind. Audit Adj.  Alameda    5   417  ...   05-0211  HSC00211F   \n1  Incl. Ind. Audit Adj.  Alameda    5   417  ...   05-0211  HSC00211F   \n2  Incl. Ind. Audit Adj.  Alameda    5   417  ...   05-0211  HSC00211F   \n3  Incl. Ind. Audit Adj.  Alameda    5   417  ...   05-0211  HSC00211F   \n4  Incl. Ind. Audit Adj.  Alameda    5   417  ...   05-0211  HSC00211F   \n\n   REG_MCAL# BED_LIC BED_AVL BED_STF       Variable   Amount WEB-SITE ORG-NAME  \n0  ZZR00211F     161     161     161   DAY_ MCAR_TR  12330.0      NaN      NaN  \n1  ZZR00211F     161     161     161    DAY_MCAR_MC    885.0      NaN      NaN  \n2  ZZR00211F     161     161     161    DAY_MCAL_TR  13093.0      NaN      NaN  \n3  ZZR00211F     161     161     161  DAY_ MCAL_ MC   1786.0      NaN      NaN  \n4  ZZR00211F     161     161     161       DAY_CNTY      0.0      NaN      NaN  \n\n[5 rows x 35 columns]"
+      ]
+    },
+    {
+      "cell_position_1_based": 3,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "        Null Count  Percent Missing\nCOUNTY         430         0.074349"
+      ]
+    },
+    {
+      "cell_position_1_based": 5,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Shape after dropping nulls: (577920, 8)\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 6,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Number of duplicate rows: 24898\nShape after removing duplicates: (553022, 8)\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 11,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "{'BED_LIC': np.int64(11267),\n 'BED_AVL': np.int64(11912),\n 'BED_STF': np.int64(17944),\n 'Amount': np.int64(112574)}"
+      ]
+    },
+    {
+      "cell_position_1_based": 12,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Removed 11267 outliers from 'BED_LIC'\nRemoved 5590 outliers from 'BED_AVL'\nRemoved 12482 outliers from 'BED_STF'\nFinal shape after removing selected outliers: (513363, 8)\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 21,
+      "execution_count": null,
+      "saved_text_outputs": [
+        " Linear Regression Results:\nRMSE: 211,738,000.97\nR\u00b2 Score: 0.0128\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 22,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Random Forest Regressor Results:\nRMSE: 61,604,151.82\nR\u00b2 Score: 0.9164\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 23,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "XGBoost Regressor Results:\nRMSE: 77,446,788.77\nR\u00b2 Score: 0.8679\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 25,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "Relative Error (% of max Amount):\nLinear Regression: 1.2903%\nRandom Forest: 0.3754%\nXGBoost: 0.4720%\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 27,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "\nNormalized RMSE (% of mean Amount):\nLinear Regression: 665.04%\nRandom Forest: 193.49%\nXGBoost: 243.25%\n"
+      ]
+    },
+    {
+      "cell_position_1_based": 32,
+      "execution_count": null,
+      "saved_text_outputs": [
+        "<IPython.core.display.Javascript object>",
+        "<IPython.core.display.Javascript object>"
+      ]
+    }
+  ]
+}

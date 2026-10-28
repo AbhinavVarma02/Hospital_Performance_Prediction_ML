@@ -1,0 +1,101 @@
+{
+  "analysis_unit": "facility/report period; assigned back to long reporting rows",
+  "source_reporting_rows": 578350,
+  "facility_periods": 2690,
+  "development_periods": 2154,
+  "heldout_periods": 536,
+  "development_facilities": 377,
+  "heldout_facilities": 95,
+  "facility_overlap": 0,
+  "features": [
+    "log_licensed_beds",
+    "available_share",
+    "staffed_share"
+  ],
+  "excluded_from_distance": [
+    "FAC_NO",
+    "FAC_NAME",
+    "COUNTY",
+    "Variable",
+    "Amount",
+    "DAY_PER"
+  ],
+  "selected_k": 3,
+  "selection_rule": "Choose highest development silhouette for K=2..8 among candidates with mean facility-bootstrap ARI >= 0.80 and minimum development cluster share >= 0.02. If none qualify, use highest development silhouette and explicitly mark the stability/size requirement unsupported. Test facilities never select K.",
+  "selection_stability_size_supported": true,
+  "selection_requirement_warning": null,
+  "selected_development_silhouette": 0.40703974138663257,
+  "heldout_silhouette": 0.4447312112442376,
+  "heldout_cluster_counts": {
+    "0": 313,
+    "1": 169,
+    "2": 54
+  },
+  "pca_explained_variance_ratio": [
+    0.3975719084783235,
+    0.3449082791106213
+  ],
+  "preprocessing_fitted_on": "development facilities only; each bootstrap refits all preprocessing",
+  "clipping_quantiles": [
+    0.01,
+    0.99
+  ],
+  "development_ari_without_clipping_at_selected_k": 0.991456992610671,
+  "development_silhouette_without_clipping_at_selected_k": 0.4060127455810871,
+  "feature_missing_periods": {
+    "log_licensed_beds": 48,
+    "available_share": 60,
+    "staffed_share": 41
+  },
+  "development_imputation_medians": [
+    5.0689042022202315,
+    1.0,
+    0.6685393258426966
+  ],
+  "development_scaler_means": [
+    4.902567947246283,
+    0.9627995365542429,
+    0.6814424974772737
+  ],
+  "development_scaler_scales": [
+    1.0277463633431312,
+    0.08749573670467094,
+    0.21462149148053522
+  ],
+  "clipping_lower_bounds": [
+    2.5649493574615367,
+    0.5624750000000001,
+    0.13043478260869565
+  ],
+  "clipping_upper_bounds": [
+    6.760414691083428,
+    1.0,
+    1.0
+  ],
+  "negative_bed_cells_treated_as_missing": 0,
+  "available_above_licensed_periods": 10,
+  "staffed_above_available_periods": 1,
+  "random_seed": 42,
+  "seed_stability_seeds": [
+    11,
+    29,
+    71
+  ],
+  "facility_bootstrap_seeds": [
+    101,
+    203,
+    307,
+    409,
+    503
+  ],
+  "interpretation": "Capacity/resource-availability patterns, not hospital efficiency, clinical quality, staffing headcount, or causal optimization. Amount is excluded because Variable mixes units.",
+  "limitations": [
+    "Facility-periods from the same facility are correlated; facility-separated diagnostics and resampling reduce this dependence but do not establish temporal forecasting.",
+    "Each facility-period has equal fitting weight; facilities with more reporting periods contribute more vectors. Long Variable rows do not multiply fitting weight.",
+    "Five facility bootstraps provide sensitivity evidence, not a confidence interval or proof of a natural population partition.",
+    "K=2..8 is a prespecified finite search; silhouette favors some geometries and must be read with stability and profiles.",
+    "All periods receive the frozen development model; PCA and cluster IDs carry no ordering or efficiency meaning.",
+    "Capacity-only features cannot distinguish financial resource intensity or patient case mix.",
+    "Licensed beds are end-of-period counts; available and staffed beds are period averages. Their ratios are descriptive capacity shares and can exceed one, without representing simultaneous utilization."
+  ]
+}

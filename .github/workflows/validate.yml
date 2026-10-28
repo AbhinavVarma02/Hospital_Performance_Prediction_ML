@@ -1,0 +1,47 @@
+name: Validate hospital ML analysis
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      reproduce:
+        description: Download official data and execute all improved notebooks
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  offline-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.17'
+          cache: pip
+      - run: python -m pip install -r requirements-lock.txt
+      - run: python -m pytest -q
+      - run: python scripts/verify_artifacts.py
+  reproduce:
+    if: github.event_name == 'workflow_dispatch' && inputs.reproduce
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11.17'
+          cache: pip
+      - run: python -m pip install -r requirements-lock.txt
+      - run: python scripts/fetch_data.py
+      - run: python scripts/execute_notebooks.py
+      - run: python scripts/verify_artifacts.py --with-data
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reproduced-notebooks-and-reports
+          path: |
+            notebooks/
+            reports/
+            !reports/**/reporting_row_assignments.csv.gz

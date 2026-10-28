@@ -1,6 +1,5 @@
 """Fetch fingerprinted source files explicitly, outside notebook execution."""
 import argparse
-import hashlib
 import json
 from pathlib import Path
 import sys

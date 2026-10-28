@@ -67,8 +67,7 @@ def _summary_from_snapshot(root):
     summaries = [text for entry in snapshot[CLUSTER_NOTEBOOK]
                  for text in entry["saved_text_outputs"] if SUMMARY_MARKER in text]
     _require(len(summaries) == 1, "Expected one historical K-Means mean table in saved text outputs")
-    # Bind the extracted evidence to the preserved original notebook, whose full
-    # bytes are checked above, rather than trusting an editable JSON transcription.
+    # Validate the extracted summary against the hash-verified source notebook.
     original = _json(root / CLUSTER_NOTEBOOK)
     source_summaries = ["".join(output.get("text", []))
                         for cell in original["cells"] for output in cell.get("outputs", [])
@@ -78,11 +77,7 @@ def _summary_from_snapshot(root):
 
 
 def _printed_precision_matches(actual, printed):
-    """Accept half a unit in the last printed decimal place, including exponents.
-
-    The original beds have six decimal places; Amount has six decimal places in
-    scientific notation. A blanket relative tolerance would weaken one of these.
-    """
+    """Allow half a unit in the last printed place, including scientific notation."""
     try:
         value, reference = Decimal(str(actual)), Decimal(printed)
     except InvalidOperation:

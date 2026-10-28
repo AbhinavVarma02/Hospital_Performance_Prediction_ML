@@ -1,4 +1,4 @@
-"""Audited type conversion and an isolated replay of historical row cleaning."""
+"""Data preparation and a separate copy of the coursework cleaning workflow."""
 
 import hashlib
 import json
@@ -35,7 +35,7 @@ def read_raw(path=RAW_PATH):
 
 
 def prepare_data(raw):
-    """No learned cleaning; preserve report identity and missing predictors.
+    """Preserve report identity and missing predictors without learned cleaning.
 
     Deduplication precedes projection so equal values in different years survive.
     Invalid numeric predictors become missing, for train-only pipeline imputation.
@@ -76,11 +76,10 @@ def prepare_data(raw):
 
 
 def historical_cleaning(raw):
-    """Replay original regression notebook cleaning ONLY for provenance.
+    """Run the coursework cleaning rules separately from model evaluation.
 
-    This deliberately preserves historical cross-period projection/deduplication
-    and globally fitted sequential IQR rules. Never use it for improved evaluation.
-    Counts are observations; there is no trimming to any expected row count.
+    Projected deduplication and global IQR filters reproduce the original method.
+    Updated models use prepare_data and fit preprocessing within training folds.
     """
     df = raw[LEGACY_COLUMNS].dropna().copy()
     steps = [{'step': 'raw', 'rows': len(raw)}, {'step': 'drop_missing_selected_columns', 'rows': len(df)}]

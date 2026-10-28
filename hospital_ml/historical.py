@@ -1,14 +1,12 @@
-"""Isolated historical replay; its global preprocessing is NOT valid evaluation."""
-import json
+"""Coursework workflow reproduction, separate from facility-aware evaluation."""
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
-from hospital_ml.data import LEGACY_COLUMNS, historical_cleaning, sha256, write_json
+from hospital_ml.data import LEGACY_COLUMNS, historical_cleaning, write_json
 
 
 def run_historical(raw, output_dir, original_cleaned_path=None):
@@ -23,8 +21,7 @@ def run_historical(raw, output_dir, original_cleaned_path=None):
     legacy_matrix = cleaned[features].copy()
     for col in ['FAC_NAME', 'COUNTY', 'Variable']:
         legacy_matrix[col + '_ENC'] = LabelEncoder().fit_transform(cleaned[col])
-    # These are the seven columns actually used by the historical code.
-    # Ordinal IDs and global fitting are reproduced only to audit that result.
+    # Retain the original seven-feature matrix for coursework output validation.
     X_legacy_scaled = StandardScaler().fit_transform(legacy_matrix)
     model = KMeans(n_clusters=3, random_state=42, n_init='auto').fit(X_legacy_scaled)
     pca = PCA(n_components=2, svd_solver='full').fit(X_legacy_scaled)

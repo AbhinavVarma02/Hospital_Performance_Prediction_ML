@@ -236,8 +236,7 @@ def run_supervised(df: pd.DataFrame, output_dir, seed: int = 42, target_variable
     cv_regression.to_csv(output_dir / "regression_cv.csv", index=False)
     cv_classification.to_csv(output_dir / "classification_cv.csv", index=False)
 
-    # Outlier sensitivity uses development folds only; it cannot select by test.
-    # Hold the selected estimator fixed, compare feature clipping vs no clipping.
+    # Compare clipping on development folds while holding the estimator fixed.
     reg_unclipped = clone(regression[regression_choice]).set_params(preprocess__numeric__clip="passthrough")
     cls_unclipped = clone(classification[classification_choice]).set_params(preprocess__numeric__clip="passthrough")
     sensitivity_reg = _cv_regression(X_dev, y_dev, dev_groups, folds, {"selected_without_clipping": reg_unclipped})

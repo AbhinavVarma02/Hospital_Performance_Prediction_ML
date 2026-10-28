@@ -1,24 +1,12 @@
-# Executed results and limitations
+# Results
 
 These results were regenerated on 2026-10-28 with Python 3.11.17, Pandas 2.2.3, NumPy 2.2.6, and scikit-learn 1.6.1. All four new notebooks executed in fresh kernels, in sequential order, with zero error outputs. [Execution manifest](../reports/execution_manifest.json) records versions, code-cell counts, and file fingerprints. The original three notebooks and two PDFs remain byte-identical to source commit `1f00286346c6a4549059bf804994c3765a73a156`.
 
-## Historical count reconciliation
+## Data summary
 
-[Cleaning replay](../reports/historical/cleaning_replay.json) records this observed trail:
+The input contains 578,350 reporting rows across 472 facilities and 2,690 reporting periods. The updated data preparation retains missing predictors for training-fit imputation and removes only exact full-schema duplicates; none occur in this extract. One capacity vector per reporting period prevents repeated measure rows from multiplying its clustering weight.
 
-| Step | Reporting rows |
-| --- | ---: |
-| Raw official extract | 578,350 |
-| Selected-column missing-value removal | 577,920 |
-| Original projected deduplication | 553,022 |
-| Numeric coercion and missing-number removal | 542,702 |
-| Sequential BED_LIC IQR filter | 531,435 |
-| Sequential BED_AVL IQR filter | 525,845 |
-| Sequential BED_STF IQR filter | 513,363 |
-
-The final eight analysis columns match the original shared cleaned CSV exactly in values and row order. There is no sampling or trimming to a desired count. Original saved results are preserved in their notebooks and [extracted text outputs](../reports/historical/original_saved_text_outputs.json). [Historical replay](../reports/historical/replay_summary.json) separately records the actual seven-feature K-Means/PCA computation; its displayed cluster means also agree with the historical printed precision, without claiming recovery of historical per-row labels or library state.
-
-Historical cleaning removed duplicates after discarding facility IDs/dates and learned IQR cutoffs globally. It remains isolated from improved training and evaluation. The improved dataset instead retains all 578,350 reporting rows, including missing predictors; there are no exact full-schema duplicate rows.
+The original cleaning and model outputs remain separate under `reports/historical/` and in the unchanged coursework notebooks. The original cleaning projected away facility IDs and dates before deduplication and applied global IQR filters. Those rules are isolated from the updated training and validation workflows. [Data provenance](DATA_PROVENANCE.md) documents the source versions and measurement definitions.
 
 ## Capacity clusters
 
@@ -61,7 +49,7 @@ Two hundred whole-facility bootstrap resamples give conditional 95% percentile i
 
 Predictor clipping is a prespecified robustness choice, not an established performance improvement. In development-only sensitivity, the selected regressor's mean MAE is **$172.8M with clipping vs $154.6M without**; clipping is worse. Classifier balanced accuracy is 0.806 vs 0.804. The unclipped results are disclosed without changing the frozen primary procedure after seeing held-out outcomes. A future revision could select treatment inside development CV and obtain a fresh external/temporal test.
 
-## Limits of the conclusions
+## Limitations
 
 - `Amount` mixes units by `Variable`; improved models never pool it across measures. The original mixed-unit scores are preserved without comparison to this changed task.
 - Licensed beds are end-of-period counts; available/staffed beds are period averages. Ratios are descriptive, can exceed one, and are not validated simultaneous utilization measures.

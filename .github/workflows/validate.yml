@@ -1,4 +1,4 @@
-name: Validate reproducible traditional ML
+name: Validate hospital ML analysis
 
 on:
   push:

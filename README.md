@@ -1,47 +1,39 @@
 # Hospital Performance & Resource Optimization
 
-**Original project collaborators: Abhinav Varma & Devika Rani Sanaboyina, UMBC DATA 602.**
+**Project collaborators: Abhinav Varma & Devika Rani Sanaboyina, UMBC DATA 602.**
 
-Traditional machine learning analysis of California hospital financial reporting data using Python, Pandas, K-Means, PCA, regression, and classification. This revision improves validation and reproducibility while preserving all three original notebooks and both original PDFs byte for byte.
+Traditional machine learning analysis of California hospital financial reporting data using Python, Pandas, K-Means, PCA, regression, and classification. The updated workflows add facility-aware validation, clearer feature definitions, cluster stability analysis, and baseline comparisons. The original coursework notebooks, reports, and collaborator contributions are preserved alongside the updated analysis.
 
-## Historical scope, preserved and reproduced
+## Data
 
-The existing résumé statements remain historical descriptions of the collaborative work:
+The 2012–2017 California HCAI/OSHPD extract contains **578,350 reporting rows**, **472 facilities**, and **2,690 facility reporting periods**. Each long-format row represents one reporting measure for a facility period. `Amount` can represent dollars, counts, hours, or ratios depending on `Variable`.
 
-> Profiled capacity/spending patterns in 578K hospital report rows using Python, Pandas and CRISP-DM.
->
-> Segmented 513K+ cleaned hospital records into resource-intensity groups using K-Means and PCA.
+Capacity clustering uses one vector per facility period, then assigns its cluster to the associated reporting rows. Supervised models use only `TOT_OP_EXP`, total operating expenses, to keep the target units consistent. See [data provenance](docs/DATA_PROVENANCE.md) for source versions, definitions, and original artifacts, and [methods](docs/METHODS.md) for the modeling decisions.
 
-The fingerprinted official extract contains **578,350 reporting rows**. Replaying the original cleaning produces **513,363 rows**, with an **exact eight-column value match** to the original shared cleaned CSV. These are observed counts; no data were altered to reach them. Rows are reporting measures across periods, not distinct hospitals. The extract covers **472 facilities and 2,690 reporting periods**.
+## Notebooks
 
-The original clustering used the seven-column `X_scaled` despite constructing a different `X_cluster_scaled`. Its original output and methodology remain visible. Historical resource-intensity language should be explained as exploratory capacity/resource grouping, without an efficiency or clinical-quality claim. [Historical provenance](docs/HISTORICAL_PROVENANCE.md) contains commit links, hashes, original evidence, and the replay trail. [Interview guide](docs/INTERVIEW_GUIDE.md) explains the corrections candidly.
-
-## Reproduced notebooks
-
-All four new notebooks have saved outputs from fresh, sequential kernel executions. They can also run independently after fetching the input.
+The four added notebooks include saved outputs from fresh, sequential kernel executions. Each can run independently after fetching the input.
 
 | Notebook | Purpose |
 | --- | --- |
-| [01_data_audit](notebooks/01_data_audit.ipynb) | Source fingerprint, missingness, reporting units, capacity EDA, historical cleaning reconciliation |
-| [02_capacity_clustering](notebooks/02_capacity_clustering.ipynb) | One vector per facility period; K selection, silhouette, bootstrap stability, shared K-Means/PCA matrix, descriptive profiles |
-| [03_supervised_evaluation](notebooks/03_supervised_evaluation.ipynb) | Expense regression and classification; grouped CV, dummy baselines, held-out metrics and facility-bootstrap intervals |
-| [04_historical_replay](notebooks/04_historical_replay.ipynb) | Isolated original cleaning and actual seven-feature K-Means/PCA replay, separate from improved evaluation |
+| [01_data_audit](notebooks/01_data_audit.ipynb) | Source fingerprints, missingness, reporting units, and capacity exploration |
+| [02_capacity_clustering](notebooks/02_capacity_clustering.ipynb) | Facility-period clustering, K selection, silhouette, stability, PCA, and profiles |
+| [03_supervised_evaluation](notebooks/03_supervised_evaluation.ipynb) | Expense regression and classification with grouped validation and baselines |
+| [04_historical_replay](notebooks/04_historical_replay.ipynb) | Separate execution of the original cleaning and seven-feature K-Means/PCA workflow |
 
-## What changed
+## Methods
 
-- **Consistent matrix:** improved K-Means and PCA both consume the same `X_cluster_scaled` and feature order. PCA is a visualization, not evidence of efficiency.
-- **Facility separation:** 377 development and 95 held-out facilities, with zero overlap. Supervised model selection uses three development GroupKFold splits. Learned imputation, clipping, scaling, encoding, and classification cutoffs stay inside training partitions.
-- **K validation:** compare K=2..8 on development facilities using silhouette, initialization ARI, and five whole-facility bootstrap refits. Apply a declared stability/size selection rule before inspecting the holdout.
-- **Defensible features:** preserve report dates; deduplicate only full original rows; retain missing predictors for training-fit imputation; avoid ordinal identity codes. Use licensed beds plus descriptive availability shares to reduce repeated weighting of correlated bed counts. COUNTY is one-hot encoded for supervised models.
-- **Comparable targets:** `Amount` mixes dollars, counts, hours, and ratios. Improved clustering excludes it; supervised evaluation uses only `TOT_OP_EXP`, total operating expenses. Classification denotes above-training-median reported expense, not demand or efficiency.
-- **Honest evaluation:** dummy baselines, MAE/RMSE/R²/median absolute error, balanced accuracy/macro F1/ROC-AUC/average precision, confusion matrices, prevalence, equal-facility sensitivity, and whole-facility bootstrap intervals. No normalization by the largest outcome to imply tiny errors.
-- **Outlier sensitivity:** retain evaluation rows and target extremes. Predictor clipping is learned inside training; development-only comparisons without clipping are reported, including cases where clipping performs worse.
+- **Consistent feature inputs:** K-Means and PCA consume the same `X_cluster_scaled` matrix and column order. PCA is used for visualization.
+- **Facility-aware validation:** 377 development facilities and 95 held-out facilities have no overlap. Supervised model selection uses three development GroupKFold splits. Imputation, clipping, scaling, encoding, and classification thresholds are fitted within training partitions.
+- **Cluster selection:** K=2..8 is evaluated on development facilities using silhouette, initialization agreement, and five whole-facility bootstrap refits. A declared stability and cluster-size rule selects K before held-out evaluation.
+- **Feature preparation:** Report identifiers and dates are retained. Only exact full-schema duplicates are removed. Missing predictors remain available for training-fit imputation. Licensed beds and descriptive availability shares reduce repeated weighting of correlated bed counts; COUNTY uses one-hot encoding for supervised models.
+- **Comparable targets:** Clustering excludes mixed-unit `Amount`. Regression predicts reported operating expenses, while classification identifies values above a training-derived expense median.
+- **Model evaluation:** Dummy baselines accompany MAE, RMSE, R², median absolute error, balanced accuracy, macro F1, ROC-AUC, average precision, prevalence, and confusion matrices. Whole-facility bootstrap intervals and equal-facility metrics describe uncertainty and weighting sensitivity.
+- **Outlier sensitivity:** Evaluation rows and target extremes are retained. Predictor clipping is learned from training data; development-only comparisons without clipping are reported.
 
-## Executed results
+## Results
 
-The improved analysis uses **2,690 facility-period capacity vectors**, then maps labels to all 578,350 long reporting rows. This is separate from the historical 513,363-row segmentation.
-
-| Improved evaluation | Result |
+| Evaluation | Result |
 | --- | --- |
 | Selected K | 3 |
 | Development / held-out silhouette | 0.407 / 0.445 |
@@ -51,11 +43,11 @@ The improved analysis uses **2,690 facility-period capacity vectors**, then maps
 | Expense classification balanced accuracy | 0.790 vs 0.500 dummy baseline |
 | Expense classification ROC-AUC / average precision | 0.850 / 0.812; positive prevalence 0.513 |
 
-[Full results and limitations](docs/RESULTS.md) link to the machine-readable artifacts. Historical scores use different targets, rows, and validation; they are not directly comparable. These results describe this historical extract, without establishing clinical utility, hospital efficiency, or future forecasting performance.
+[Results and limitations](docs/RESULTS.md) provide the full context and links to machine-readable reports. Cluster profiles describe capacity and resource availability; they do not establish hospital efficiency, clinical quality, or causal optimization benefits. Facility holdout evaluates unseen facilities in this extract, not future forecasting performance. Scores from the original coursework use different targets and validation and are not directly comparable.
 
-## Reproduce locally
+## Run locally
 
-Tested with Python **3.11.17** on Linux. Create an isolated environment and run from the repository root:
+Tested with Python **3.11.17** on Linux. From the repository root:
 
 ```bash
 python3.11 -m venv .venv
@@ -67,15 +59,15 @@ python scripts/verify_artifacts.py --with-data
 python -m pytest -q
 ```
 
-On Windows, activate with `.venv\Scripts\Activate.ps1`. `requirements.txt` lists direct scientific dependencies; `requirements-lock.txt` records every package in the tested environment. Notebooks contain no package-install or download cells, no Colab-specific paths, and no dependency on prior notebook state.
+On Windows, activate with `.venv\Scripts\Activate.ps1`. `requirements.txt` lists direct dependencies; `requirements-lock.txt` records the tested environment. Notebooks contain no installation or download cells, Colab-specific paths, or dependency on prior notebook state.
 
-The raw CSV (~205 MB) and original shared cleaned CSV (~47 MB) are deliberately excluded from Git. [Source manifest](data/source_manifest.json) records URLs, retrieval date, hashes, and observed dimensions. The original raw Drive link was unavailable, so the replay uses the official California resource. Fetching verifies the recorded fingerprint and rejects changed source bytes instead of silently substituting data. If the optional shared cleaned link becomes unavailable, fetch only the official raw input; the historical notebook reports that independent cleaned-file comparison is unavailable.
+The raw CSV (~205 MB) and shared coursework cleaned CSV (~47 MB) are excluded from Git. The [source manifest](data/source_manifest.json) records URLs, retrieval date, fingerprints, and dimensions. Fetching verifies the recorded source fingerprint. The original raw Drive link was unavailable, so the workflow uses the official California resource. If the optional cleaned-file link is unavailable, fetch only the raw source; the original-workflow notebook reports that the cleaned-file comparison is unavailable.
 
-Compact metrics, profiles, assignments by facility period, and figures are tracked under [reports](reports). Large reporting-row assignments are generated locally and ignored. [Execution manifest](reports/execution_manifest.json) records versions, notebook hashes, cell counts, and execution status. GitHub Actions runs offline boundary/integrity tests; its optional manual reproduction job also downloads the fingerprinted raw file and executes all new notebooks.
+Compact metrics, profiles, facility-period assignments, and figures are tracked under [reports](reports). Large reporting-row assignments are generated locally and ignored. The [execution manifest](reports/execution_manifest.json) records versions, notebook hashes, code-cell counts, and execution status. GitHub Actions runs offline validation; its optional manual job downloads the raw source and executes the added notebooks.
 
-## Original collaborative artifacts
+## Original coursework
 
-The original opening order remains regression → clustering/classification → classification with outliers. These files and their saved results remain unchanged:
+The original opening order is regression → clustering/classification → classification with outliers. These notebooks, PDFs, and their saved results remain unchanged:
 
 - `602_Regression_Model_Abhinav&Devika.ipynb`
 - `602_Clustering_&_Classification_Model_Abhinav&Devika.ipynb`
@@ -83,7 +75,7 @@ The original opening order remains regression → clustering/classification → 
 - `602 executive  summary -  Devika  & Abhinav.pdf`
 - `DATA 602 FINAL PROJECT PPT[1].pdf`
 
-Original supervised results are preserved rather than rerun as current validated findings. The new regression/classification notebook replaces their evaluation methodology; the historical replay reproduces cleaning and K-Means/PCA. Original code cells retain outputs despite null execution counters and unrecorded library versions, so exact historical per-row labels and execution-state reproduction are not asserted.
+The original supervised results remain separate from the updated evaluation. Original code cells retain outputs despite null execution counters and unrecorded library versions; their saved execution state is therefore not fully recoverable. The original workflow is retained for methodological comparison.
 
 ## References
 

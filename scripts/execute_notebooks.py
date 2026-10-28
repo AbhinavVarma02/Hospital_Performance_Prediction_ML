@@ -20,7 +20,7 @@ def main():
         path = ROOT / 'work' / relative
         path.mkdir(parents=True, exist_ok=True)
         os.environ.setdefault(name, str(path))
-    # Keep linear algebra deterministic and modest on ordinary laptops.
+    # Limit thread counts for repeatable execution and bounded CPU use.
     for name in ['OMP_NUM_THREADS', 'OPENBLAS_NUM_THREADS', 'MKL_NUM_THREADS']:
         os.environ.setdefault(name, '1')
     import nbformat

@@ -38,12 +38,7 @@ SELECTION_RULE = (
 
 
 class CapacityClipper(TransformerMixin, BaseEstimator):
-    """Learn 1st/99th feature quantiles from fitting facilities only.
-
-    This retains all facilities, including large facilities, and limits extreme
-    feature influence without global IQR row deletion. Missing values stay missing
-    until the subsequent training-median imputer.
-    """
+    """Fit predictor clipping bounds without dropping facilities or imputing data."""
 
     def __init__(self, lower=0.01, upper=0.99):
         self.lower = lower
@@ -105,7 +100,7 @@ def _kmeans(k, seed):
 def _silhouette(X, labels, seed):
     if len(np.unique(labels)) < 2 or len(np.unique(labels)) >= len(labels):
         return None
-    # Bound pairwise-distance memory; this is a fixed seeded sample, not all rows.
+    # Bound pairwise-distance memory with a fixed seeded sample.
     return float(silhouette_score(X, labels, sample_size=min(2000, len(X)), random_state=seed))
 
 
